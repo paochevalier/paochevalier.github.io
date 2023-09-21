@@ -16,7 +16,7 @@ website:
         href: https://github.com/YOURUSERNAME/YOURREPO
   page-footer:
     right: "Built with [Quarto](https://quarto.org/)"
-    left: "&copy; Copyright 2023, YOUR NAME"
+    left: "&copy; Made by Paolo, Updated in 2023"
 
 format:
   html:
