@@ -287,6 +287,30 @@
       background: white;
     }
 
+    .mobile-pdf-fallback {
+      display: none;
+      padding: 28px 20px;
+      background: rgba(255,255,255,0.7);
+      text-align: center;
+    }
+
+    html[data-theme="dark"] .mobile-pdf-fallback {
+      background: rgba(24,24,24,0.72);
+    }
+
+    .mobile-pdf-text {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .mobile-pdf-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     .fallback {
       display: none;
     }
@@ -312,8 +336,11 @@
       }
 
       .pdf-frame {
-        height: 68vh;
-        min-height: 540px;
+        display: none;
+      }
+
+      .mobile-pdf-fallback {
+        display: block;
       }
 
       .hero-copy {
@@ -376,6 +403,14 @@
           src="./data/cv.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
           title="Curriculum vitae PDF"
         ></iframe>
+
+        <div class="mobile-pdf-fallback">
+          <p class="mobile-pdf-text" id="mobile-pdf-text">On mobile, open or download the PDF to view the CV.</p>
+          <div class="mobile-pdf-actions">
+            <a class="download-btn" id="mobile-open-btn" href="./data/cv.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+            <a class="download-btn" id="mobile-download-btn" href="./data/cv.pdf" download>Download PDF</a>
+          </div>
+        </div>
       </div>
 
       <div class="fallback" id="fallback-text"></div>
@@ -390,6 +425,9 @@
         button: "Email me",
         viewer: "Curriculum Vitae",
         download: "Download PDF",
+        mobileText: "On mobile, open or download the PDF to view the CV.",
+        mobileOpen: "Open PDF",
+        mobileDownload: "Download PDF",
         fallback: ""
       },
       fr: {
@@ -398,6 +436,9 @@
         button: "M’écrire par email",
         viewer: "Curriculum Vitae",
         download: "Télécharger le PDF",
+        mobileText: "Sur mobile, ouvrez ou téléchargez le PDF pour consulter le CV.",
+        mobileOpen: "Ouvrir le PDF",
+        mobileDownload: "Télécharger le PDF",
         fallback: ""
       },
       cat: {
@@ -406,6 +447,9 @@
         button: "Escriure’m un correu",
         viewer: "Currículum Vitae",
         download: "Descarregar el PDF",
+        mobileText: "En mòbil, obriu o descarregueu el PDF per consultar el CV.",
+        mobileOpen: "Obrir el PDF",
+        mobileDownload: "Descarregar el PDF",
         fallback: ""
       },
       es: {
@@ -414,6 +458,9 @@
         button: "Escribirme por correo",
         viewer: "Currículum Vitae",
         download: "Descargar el PDF",
+        mobileText: "En móvil, abran o descarguen el PDF para consultar el CV.",
+        mobileOpen: "Abrir el PDF",
+        mobileDownload: "Descargar el PDF",
         fallback: ""
       }
     };
@@ -424,6 +471,9 @@
     const viewerTitle = document.getElementById("viewer-title");
     const downloadBtn = document.getElementById("download-btn");
     const fallbackText = document.getElementById("fallback-text");
+    const mobilePdfText = document.getElementById("mobile-pdf-text");
+    const mobileOpenBtn = document.getElementById("mobile-open-btn");
+    const mobileDownloadBtn = document.getElementById("mobile-download-btn");
     const buttons = document.querySelectorAll(".lang-btn");
     const themeToggle = document.getElementById("theme-toggle");
 
@@ -434,6 +484,9 @@
       mailBtn.textContent = t.button;
       viewerTitle.textContent = t.viewer;
       downloadBtn.textContent = t.download;
+      mobilePdfText.textContent = t.mobileText;
+      mobileOpenBtn.textContent = t.mobileOpen;
+      mobileDownloadBtn.textContent = t.mobileDownload;
       fallbackText.textContent = t.fallback;
       document.documentElement.lang = lang === "cat" ? "ca" : lang;
 
