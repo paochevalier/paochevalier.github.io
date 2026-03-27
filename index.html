@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>
+  <rect width='16' height='16' fill='black'/>
+  
+  <!-- motif pixel blanc -->
+  <rect x='2' y='2' width='4' height='4' fill='white'/>
+  <rect x='10' y='2' width='4' height='4' fill='white'/>
+  <rect x='6' y='6' width='4' height='4' fill='white'/>
+  <rect x='2' y='10' width='4' height='4' fill='white'/>
+  <rect x='10' y='10' width='4' height='4' fill='white'/>
+</svg>">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Paolo Chevalier</title>
@@ -404,13 +415,32 @@
           title="Curriculum vitae PDF"
         ></iframe>
 
-        <div class="mobile-pdf-fallback">
-          <p class="mobile-pdf-text" id="mobile-pdf-text">On mobile, open or download the PDF to view the CV.</p>
-          <div class="mobile-pdf-actions">
-            <a class="download-btn" id="mobile-open-btn" href="./data/cv.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-            <a class="download-btn" id="mobile-download-btn" href="./data/cv.pdf" download>Download PDF</a>
-          </div>
-        </div>
+<div class="mobile-pdf-fallback">
+  <p class="mobile-pdf-text" id="mobile-pdf-text">
+    On mobile, use the viewer if your browser tries to download the PDF.
+  </p>
+
+  <div class="mobile-pdf-actions">
+    <a
+      class="download-btn"
+      id="mobile-open-btn"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Open viewer
+    </a>
+
+    <a
+      class="download-btn"
+      id="mobile-download-btn"
+      href="./data/cv.pdf"
+      download
+    >
+      Download PDF
+    </a>
+  </div>
+</div>
       </div>
 
       <div class="fallback" id="fallback-text"></div>
@@ -442,7 +472,7 @@
         fallback: ""
       },
       cat: {
-        intro: "Mentre espero construir una pàgina més dinàmica, aquí teniu el meu currículum vitae actualitzat.",
+        intro: "Mentre estic fent una pàgina web més dinàmica, aquí teniu el meu currículum vitae actualitzat.",
         contact: "Em podeu contactar fent clic en aquest botó.",
         button: "Escriure’m un correu",
         viewer: "Currículum Vitae",
@@ -453,7 +483,7 @@
         fallback: ""
       },
       es: {
-        intro: "Mientras construyo una página más dinámica, aquí tienen mi currículum vitae actualizado.",
+        intro: "Mientras estoy haciendo una web más dinámica, aquí tienen mi currículum vitae actualizado.",
         contact: "Pueden ponerse en contacto conmigo haciendo clic en este botón.",
         button: "Escribirme por correo",
         viewer: "Currículum Vitae",
@@ -516,6 +546,16 @@
       localStorage.setItem("theme-mode", nextTheme);
       applyTheme(nextTheme);
     });
+
+    const publicPdfUrl =
+  window.location.origin +
+  window.location.pathname.replace(/[^/]*$/, "") +
+  "data/cv.pdf";
+
+mobileOpenBtn.href =
+  "https://mozilla.github.io/pdf.js/web/viewer.html?file=" +
+  encodeURIComponent(publicPdfUrl);
+    
   </script>
 </body>
 </html>
